@@ -1,0 +1,24 @@
+<button class="btn" (click)="alterarSprite()">Exibir Shiny</button>
+
+<div class="pokemon-grid">
+  <div class="box" *ngFor="let pokemon of pokemons">
+    <div class="id-pokemon">#{{ pokemon.id }}</div>
+    <div *ngIf="alteraSprite; else shinyTemplate">
+      <img [src]="pokemon.sprites.front_default" alt="{{ pokemon.name }}" />
+    </div>
+    <ng-template #shinyTemplate>
+      <img [src]="pokemon.sprites.front_shiny" alt="{{ pokemon.name }}" />
+    </ng-template>
+
+    <h3>
+      {{ pokemon.name }}
+    </h3>
+    <div>
+      <br />
+      <span *ngFor="let types of pokemon.types; index as i; i: +1">
+        <span class="grass">{{ pokemon.types[i].type.name }} </span>
+      </span>
+    </div>
+    <br />
+  </div>
+</div>
